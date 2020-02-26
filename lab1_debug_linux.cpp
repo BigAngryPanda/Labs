@@ -208,7 +208,7 @@ int parse(char* source, int** kp, size_t** vp, size_t** op, size_t* length)
 
 	size_t* data = (size_t*) malloc((*length)*sizeof(int) + 2*(*length)*sizeof(size_t));
 
-	int* keys = (int*) data;
+	int* keys = (int*) data[0];
 	size_t* values = &data[(*length)/2];
 	size_t* offsets = &data[(*length) + (*length)/2];
 
@@ -286,6 +286,11 @@ void pop(size_t* stack, size_t* sp)
 // Hoare partition scheme
 void qsort(int* keys, size_t* values, size_t* offsets, size_t length)
 {
+	if (!length)
+	{
+		return;
+	}
+
 	size_t stack[128];
 	size_t sp = 0;  // point to firs free size_t
 
@@ -396,14 +401,21 @@ int naive_write_file(char* output, size_t output_length, size_t* values, size_t*
 	    return 1;
 	}
 
-	fprintf(output_handler, "%ld\r\n", length);
-
-	for (size_t i = 0; i < length-1; ++i)
+	if (length)
 	{
-		fwrite(&output[values[i]], sizeof(char), offsets[i], output_handler);
-	}
+		fprintf(output_handler, "%ld\r\n", length);
 
-	fwrite(&output[values[length-1]], sizeof(char), offsets[length-1]-3, output_handler);
+		for (size_t i = 0; i < length-1; ++i)
+		{
+			fwrite(&output[values[i]], sizeof(char), offsets[i], output_handler);
+		}
+
+		fwrite(&output[values[length-1]], sizeof(char), offsets[length-1] - 3, output_handler);
+	}
+	else
+	{
+		fprintf(output_handler, "0");
+	}
 
 	fclose(output_handler);
 
@@ -424,18 +436,18 @@ int main(int argc, char const *argv[])
 
 	size_t input_length;
 
-	char* input = read_file("tests/performance_test_8", &input_length);
+	char* input = read_file("tests/zero_test", &input_length);
 
 	gettimeofday(&T2, NULL);
 
 	long int delta_ms = T2.tv_sec - T1.tv_sec;
 
-	printf("Reading stage: %ld sec.\n", T2.tv_sec - T1.tv_sec);
-
 	if (input == NULL)
 	{
 		return 2;
 	}
+
+	printf("Reading stage: %ld sec.\n", T2.tv_sec - T1.tv_sec);
 
 //--------------------------------------------------------------------------------------------
 
@@ -469,6 +481,7 @@ int main(int argc, char const *argv[])
 	delta_ms += T2.tv_sec - T1.tv_sec;
 
 	printf("Sorting stage: %ld sec.\n", T2.tv_sec - T1.tv_sec);
+
 
 //--------------------------------------------------------------------------------------------
 /*
