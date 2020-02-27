@@ -410,7 +410,7 @@ int naive_write_file(char* output, size_t output_length, size_t* values, size_t*
 			fwrite(&output[values[i]], sizeof(char), offsets[i], output_handler);
 		}
 
-		fwrite(&output[values[length-1]], sizeof(char), offsets[length-1] - 3, output_handler);
+		fwrite(&output[values[length-1]], sizeof(char), offsets[length-1] - 2, output_handler);
 	}
 	else
 	{
