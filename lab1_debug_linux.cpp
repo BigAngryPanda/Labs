@@ -208,7 +208,7 @@ int parse(char* source, int** kp, size_t** vp, size_t** op, size_t* length)
 
 	size_t* data = (size_t*) malloc((*length)*sizeof(int) + 2*(*length)*sizeof(size_t));
 
-	int* keys = (int*) data[0];
+	int* keys = (int*) &data[0];
 	size_t* values = &data[(*length)/2];
 	size_t* offsets = &data[(*length) + (*length)/2];
 
