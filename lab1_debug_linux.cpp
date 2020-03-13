@@ -116,7 +116,7 @@ int read_num_of_lines(char* source, size_t* source_pointer, size_t* output)
 // 1 if failed
 int check_end_of_line(char* source, size_t* source_pointer)
 {
-	if (source[*source_pointer] == '\r')
+	while (source[*source_pointer] == '\r')
 	{
 		++*source_pointer;
 	}
@@ -138,18 +138,6 @@ int check_end_of_line(char* source, size_t* source_pointer)
 int check_space(char* source, size_t* source_pointer)
 {
 	if (source[*source_pointer] == ' ')
-	{
-		++*source_pointer;
-	}
-	else
-	{
-		return 1;
-	}
-
-	if (source[*source_pointer] != ' ' 
-		&& source[*source_pointer] != '\t'
-		&& source[*source_pointer] != '\r'
-		&& source[*source_pointer] != '\n')
 	{
 		++*source_pointer;
 	}
@@ -184,7 +172,22 @@ int read_line(char* source, size_t* source_pointer, long int* key)
 
 	skip_until(source, source_pointer);
 
+	++*source_pointer;
+
 	return 0;
+}
+
+void skip_empty(char* source, size_t* source_pointer)
+{
+	while (source[*source_pointer])
+	{
+		if (source[*source_pointer] != '\n' && source[*source_pointer] != '\r')
+		{
+			return;
+		}
+
+		++*source_pointer;
+	}
 }
 
 /*
@@ -205,6 +208,8 @@ int parse(char* source, int** kp, size_t** vp, size_t** op, size_t* length)
 	{
 		return 1;
 	}
+
+	skip_empty(source, &source_pointer);
 
 	size_t* data = (size_t*) malloc((*length)*sizeof(int) + 2*(*length)*sizeof(size_t));
 
@@ -231,9 +236,9 @@ int parse(char* source, int** kp, size_t** vp, size_t** op, size_t* length)
 
 		keys[line_counter] = (int) temp;
 
-		++source_pointer;
-
 		offsets[line_counter] = source_pointer - values[line_counter];
+
+		skip_empty(source, &source_pointer);
 
 		++line_counter;
 	}
@@ -291,7 +296,7 @@ void qsort(int* keys, size_t* values, size_t* offsets, size_t length)
 		return;
 	}
 
-	size_t stack[128];
+	size_t stack[2048];
 	size_t sp = 0;  // point to firs free size_t
 
 	size_t i, j, left_index, right_index;
@@ -405,12 +410,10 @@ int naive_write_file(char* output, size_t output_length, size_t* values, size_t*
 	{
 		fprintf(output_handler, "%ld\r\n", length);
 
-		for (size_t i = 0; i < length-1; ++i)
+		for (size_t i = 0; i < length; ++i)
 		{
 			fwrite(&output[values[i]], sizeof(char), offsets[i], output_handler);
 		}
-
-		fwrite(&output[values[length-1]], sizeof(char), offsets[length-1] - 2, output_handler);
 	}
 	else
 	{
@@ -436,7 +439,7 @@ int main(int argc, char const *argv[])
 
 	size_t input_length;
 
-	char* input = read_file("tests/zero_test", &input_length);
+	char* input = read_file("tests/test3.txt", &input_length);
 
 	gettimeofday(&T2, NULL);
 
