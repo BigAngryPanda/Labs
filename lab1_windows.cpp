@@ -186,6 +186,19 @@ int read_line(char* source, size_t* source_pointer, long int* key)
 	return 0;
 }
 
+void skip_empty(char* source, size_t* source_pointer)
+{
+	while (source[*source_pointer])
+	{
+		if (source[*source_pointer] != '\n' && source[*source_pointer] != '\r')
+		{
+			return;
+		}
+
+		++*source_pointer;
+	}
+}
+
 /*
 	1 if failed
 	You must call free() to prevent memory leak
@@ -205,9 +218,13 @@ int parse(char* source, int** kp, size_t** vp, size_t** op, size_t* length)
 		return 1;
 	}
 
-	int* keys = (int*) malloc((*length) * sizeof(int));
-	size_t* values = (size_t*) malloc((*length) * sizeof(size_t));
-	size_t* offsets = (size_t*) malloc((*length) * sizeof(size_t));
+	skip_empty(source, &source_pointer);
+
+	size_t* data = (size_t*) malloc((*length)*sizeof(int) + 2*(*length)*sizeof(size_t));
+
+	int* keys = (int*) &data[0];
+	size_t* values = &data[(*length)/2];
+	size_t* offsets = &data[(*length) + (*length)/2];
 
 	*kp = keys;
 	*vp = values;
@@ -228,16 +245,16 @@ int parse(char* source, int** kp, size_t** vp, size_t** op, size_t* length)
 
 		keys[line_counter] = (int) temp;
 
-		++source_pointer;
-
 		offsets[line_counter] = source_pointer - values[line_counter];
+
+		skip_empty(source, &source_pointer);
 
 		++line_counter;
 	}
 
 	if (line_counter != (*length))
 	{
-		return 1;
+		return 1;	
 	}
 
 	return 0;
@@ -288,7 +305,7 @@ void qsort(int* keys, size_t* values, size_t* offsets, size_t length)
 		return;
 	}
 
-	size_t stack[128];
+	size_t stack[2048];
 	size_t sp = 0;  // point to firs free size_t
 
 	size_t i, j, left_index, right_index;
@@ -345,27 +362,23 @@ void qsort(int* keys, size_t* values, size_t* offsets, size_t length)
 	}
 }
 
-int naive_write_file(char* output, size_t* values, size_t* offsets, size_t length, const char* file_name)
+int write_file(char* output, size_t* values, size_t* offsets, size_t length, const char* file_name)
 {
-	FILE* output_handler; 
-
-	fopen_s(&output_handler, file_name, "wb");
+	FILE* output_handler = fopen(file_name, "wb");
 
 	if (output_handler == NULL)
 	{
-		return 1;
+	    return 1;
 	}
 
 	if (length)
 	{
-		fprintf(output_handler, "%zu\r\n", length);
+		fprintf(output_handler, "%ld\r\n", length);
 
-		for (size_t i = 0; i < length - 1; ++i)
+		for (size_t i = 0; i < length; ++i)
 		{
 			fwrite(&output[values[i]], sizeof(char), offsets[i], output_handler);
 		}
-
-		fwrite(&output[values[length - 1]], sizeof(char), offsets[length - 1] - 2, output_handler);
 	}
 	else
 	{
@@ -404,7 +417,7 @@ int main(int argc, char const *argv[])
 
 	qsort(keys, values, offsets, length);
 
-	if (naive_write_file(input, values, offsets, length, argv[2]))
+	if (write_file(input, values, offsets, length, argv[2]))
 	{
 		return 2;
 	}
