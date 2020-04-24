@@ -102,7 +102,7 @@
         <antcall target="commit"/>
     </target>
 
-    <target name="commit" if="${found-diff}">
+    <target name="commit" unless="${found-diff}">
         <exec executable="svn">   
             <arg value="add"/>
             <arg value="*"/>
