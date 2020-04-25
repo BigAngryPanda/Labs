@@ -91,10 +91,10 @@
             <arg value="status"/>
         </exec>
 
-        <ac:for param="classnames" list="${classnames}">
+        <ac:for param="name" list="${classnames}" delimiter=" ">
             <sequential>
                 <condition property="found-diff">
-                    <contains string="${svn_diff_result}" substring="${classnames}.java"/>
+                    <contains string="${svn_diff_result}" substring="@{name}.java"/>
                 </condition>
             </sequential>
         </ac:for>
