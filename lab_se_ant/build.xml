@@ -88,13 +88,13 @@
 
     <target name="diff">
         <exec executable="svn" outputproperty="svn_diff_result">
-            <arg value="diff"/>
+            <arg value="status"/>
         </exec>
 
         <ac:for param="classnames" list="${classnames}">
             <sequential>
                 <condition property="found-diff">
-                    <contains string="${svn_diff_result}" substring="${classnames}"/>
+                    <contains string="${svn_diff_result}" substring="${classnames}.java"/>
                 </condition>
             </sequential>
         </ac:for>
@@ -102,7 +102,7 @@
         <antcall target="commit"/>
     </target>
 
-    <target name="commit" unless="${found-diff}">
+    <target name="commit" if="${found-diff}">
         <exec executable="svn">   
             <arg value="add"/>
             <arg value="*"/>
