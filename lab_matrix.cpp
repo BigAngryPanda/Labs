@@ -1,3 +1,16 @@
+/*
+	Matrix format
+	Matrix must be valid square matrix
+	First line - number of rows (or columns)
+	Second line - first row
+	etc
+
+	Example (1 instead of 1.0 is also ok)
+	3
+	1.0 2.0 3.0
+	4.0 5.0 6.0
+	7.0 8.0 9.0
+*/
 #include <cstdio>
 #include <cstdlib>
 #include <cmath>
@@ -141,7 +154,7 @@ void zero_column(sqr_matrix& a, sqr_matrix& b, unsigned int row)
 }
 
 // Return 1 if failed
-// ab = ba = I, b must be id
+// ab = ba = I, b must be I matrix
 int inverse_matrix(sqr_matrix& a, sqr_matrix& b)
 {
 	for (unsigned int i = 0; i < a.size; ++i)
@@ -239,8 +252,6 @@ int main(int argc, char const *argv[])
 	{
 		write_matrix(b, "output");
 	}
-
-	test(b);
 
 	return 0;
 }
