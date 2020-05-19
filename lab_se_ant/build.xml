@@ -72,16 +72,11 @@
             <fileset dir="${src}"/>
         </checksum>
 
-        <propertyfile file="build.properties">
-            <entry key="md5" value="${md5cs}"/>
-            <entry key="sha1" value="${sha1cs}"/>
-        </propertyfile>
-
         <jar destfile="${jar}" update="true">
         	<zipfileset src="${jar}"/>
         	<manifest>
-                <attribute name="md5" value="${md5}"/>
-                <attribute name="sha1" value="${sha1}"/>
+                <attribute name="md5" value="${md5cs}"/>
+                <attribute name="sha1" value="${sha1cs}"/>
             </manifest>
 		</jar>
     </target>
@@ -104,7 +99,7 @@
 
     <target name="commit" if="${found-diff}">
         <exec executable="svn">   
-            <arg value="add"/>
+            <arg line="add"/>
             <arg value="*"/>
             <arg value="--force"/>
         </exec>
