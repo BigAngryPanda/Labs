@@ -30,7 +30,6 @@
 
     <target name="clean">
         <delete dir="${compiled.classes}"/>
-        <delete dir="${compiled.tests}"/>
         <delete file="${jar}"/>
     </target>
 </project>
