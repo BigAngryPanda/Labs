@@ -253,7 +253,7 @@ class H {
           i++;
           try {
             synchronized(stack) {
-              stack = new  String(stack.substring(0, stack.length() - 1));
+              stack = new String(stack.substring(0, stack.length() - 1));
               System.gc();
               Thread.sleep(6);
             }
@@ -273,7 +273,7 @@ class H {
           i++;
           try {
             synchronized(stack) {
-              stack = new  String(stack.substring(0, stack.length() - 1));
+              stack = new String(stack.substring(0, stack.length() - 1));
               System.gc();
               Thread.sleep(6);
             }
@@ -293,7 +293,7 @@ class H {
           i++;
           try {
             synchronized(stack) {
-              stack = stack.substring(0, stack.length() - 1).intern();
+              stack = new String(stack.substring(0, stack.length() - 1));
               System.gc();
               Thread.sleep(5);
             }
