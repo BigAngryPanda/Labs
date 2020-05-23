@@ -63,5 +63,7 @@
         <delete dir="${compiled.classes.fixed}"/>
         <delete dir="${compiled.classes.fixed1}"/>
         <delete file="${jar}"/>
+        <delete file="${jar.fixed}"/>
+        <delete file="${jar.fixed1}"/>
     </target>
 </project>

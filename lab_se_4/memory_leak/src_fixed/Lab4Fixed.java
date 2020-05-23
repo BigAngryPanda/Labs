@@ -249,11 +249,12 @@ class H {
     Thread t = new Thread(new Runnable() {
       public void run() {
         int i = 0;
-        stack = stack.substring(0, stack.length() - 1);
         while(true) {
           i++;
           try {
             synchronized(stack) {
+              stack = stack.substring(0, stack.length() - 1);
+              System.gc();
               Thread.sleep(6);
             }
           } catch(Exception e) {
@@ -268,11 +269,12 @@ class H {
     Thread t = new Thread(new Runnable() {
       public void run() {
         int i = 0;
-        stack = stack.substring(0, stack.length() - 1);
         while(true) {
           i++;
           try {
             synchronized(stack) {
+              stack = stack.substring(0, stack.length() - 1);
+              System.gc();
               Thread.sleep(6);
             }
           } catch(Exception e) {
@@ -287,11 +289,12 @@ class H {
     Thread t = new Thread(new Runnable() {
       public void run() {
         int i = 0;
-        stack = stack.substring(0, stack.length() - 1);
         while(true) {
           i++;
           try {
             synchronized(stack) {
+              stack = stack.substring(0, stack.length() - 1);
+              System.gc();
               Thread.sleep(5);
             }
           } catch(Exception e) {
@@ -325,11 +328,12 @@ class H {
     Thread t = new Thread(new Runnable() {
       public void run() {
         int i = 0;
-        stack = stack.substring(0, stack.length() - 1);
         while(true) {
           i++;
           try {
             synchronized(stack) {
+              stack = stack.substring(0, stack.length() - 1);
+              System.gc();
               Thread.sleep(6);
             }
           } catch(Exception e) {

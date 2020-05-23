@@ -31,6 +31,7 @@ public class Lab4Fixed1 {
         while(true) {
           try {
              D d = new D();
+             d.t11();
              Thread.sleep(8);
           } catch(Exception e) {
             // Do nothing
@@ -42,9 +43,20 @@ public class Lab4Fixed1 {
   }
 }
 class H {
+  int t26;
+  int t2;
+  int t40;
+  int t29;
+  int t50;
+  long t25;
+  long t34;
+  long t38;
   java.io.ObjectOutputStream sampleOut;
   java.io.ObjectOutputStream helloWorldWriter;
   java.io.ObjectOutputStream fileOut;
+  int[] t31 = {3, -3, -3, 2};
+  int[] t5 = {1, 2, -3, 0};
+  int[] t14 = {1, 0, -3, -2};
   static String stack = "";
   static java.util.Map<java.net.URI,byte[]> cache = new java.util.HashMap<java.net.URI,byte[]>();
   static int t42;
@@ -52,7 +64,18 @@ class H {
   static int t7;
   static int t32;
   static int t47;
+  java.util.List<String> t21 = new java.util.ArrayList<String>();
+  java.util.List<String> t18 = new java.util.ArrayList<String>();
+  java.util.List<String> t46 = new java.util.ArrayList<String>();
   public H() {
+    t26 = 3;
+    t2 = 8;
+    t40 = 2;
+    t29 = 8;
+    t50 = 1;
+    t25 = 2L;
+    t34 = 1L;
+    t38 = 4L;
     try {
         sampleOut = new java.io.ObjectOutputStream(new java.io.FileOutputStream("sampleOut.txt"));
         helloWorldWriter = new java.io.ObjectOutputStream(new java.io.FileOutputStream("helloWorldWriter.txt"));
@@ -226,13 +249,15 @@ class H {
     Thread t = new Thread(new Runnable() {
       public void run() {
         int i = 0;
-        stack = stack.substring(0, stack.length() - 1);
         while(true) {
           i++;
           try {
-            Thread.sleep(6);
-          }
-          catch (Exception e) {
+            synchronized(stack) {
+              stack = new  String(stack.substring(0, stack.length() - 1));
+              System.gc();
+              Thread.sleep(6);
+            }
+          } catch(Exception e) {
             // Do nothing
           }
         }
@@ -244,13 +269,15 @@ class H {
     Thread t = new Thread(new Runnable() {
       public void run() {
         int i = 0;
-        stack = stack.substring(0, stack.length() - 1);
         while(true) {
           i++;
           try {
-            Thread.sleep(6);
-          }
-          catch (Exception e) {
+            synchronized(stack) {
+              stack = new  String(stack.substring(0, stack.length() - 1));
+              System.gc();
+              Thread.sleep(6);
+            }
+          } catch(Exception e) {
             // Do nothing
           }
         }
@@ -262,13 +289,15 @@ class H {
     Thread t = new Thread(new Runnable() {
       public void run() {
         int i = 0;
-        stack = stack.substring(0, stack.length() - 1);
         while(true) {
           i++;
           try {
-            Thread.sleep(5);
-          }
-          catch (Exception e) {
+            synchronized(stack) {
+              stack = stack.substring(0, stack.length() - 1).intern();
+              System.gc();
+              Thread.sleep(5);
+            }
+          } catch(Exception e) {
             // Do nothing
           }
         }
@@ -280,13 +309,14 @@ class H {
     Thread t = new Thread(new Runnable() {
       public void run() {
         int i = 0;
-        stack += "3";
         while(true) {
           i++;
           try {
-            Thread.sleep(6);
-          }
-          catch (Exception e) {
+            synchronized(stack) {
+              stack += "3";
+              Thread.sleep(6);
+            }
+          } catch(Exception e) {
             // Do nothing
           }
         }
@@ -298,13 +328,15 @@ class H {
     Thread t = new Thread(new Runnable() {
       public void run() {
         int i = 0;
-        stack = stack.substring(0, stack.length() - 1);
         while(true) {
           i++;
           try {
-            Thread.sleep(6);
-          }
-          catch (Exception e) {
+            synchronized(stack) {
+              stack = new  String(stack.substring(0, stack.length() - 1));
+              System.gc();
+              Thread.sleep(6);
+            }
+          } catch(Exception e) {
             // Do nothing
           }
         }
@@ -316,13 +348,14 @@ class H {
     Thread t = new Thread(new Runnable() {
       public void run() {
         int i = 0;
-        stack += "7";
         while(true) {
           i++;
           try {
-            Thread.sleep(6);
-          }
-          catch (Exception e) {
+            synchronized(stack) {
+              stack += "7";
+              Thread.sleep(6);
+            }
+          } catch(Exception e) {
             // Do nothing
           }
         }
@@ -354,7 +387,14 @@ class H {
   }
 }
 class D extends H {
-  public D() {}
+  public D() {
+    t26 = 3;
+    t2 = 5;
+    t40 = 4;
+    t29 = 9;
+    t50 = 6;
+    t38 = 8L;
+  }
   public void t49() {
     Thread t = new Thread(new Runnable() {
       public void run() {
@@ -506,6 +546,30 @@ class D extends H {
   public static void t41() {
     System.out.println("метод t41 в классе D");
     System.out.println(t39);
+  }
+  public void t36() {
+    for(int i = 0; i < 9; i++) {
+      this.t21.add(String.valueOf(System.nanoTime()));
+      // System.out.println(this.t21.size());
+    }
+  }
+  public void t23() {
+    for(int i = 0; i < 7; i++) {
+      this.t18.add(String.valueOf(System.nanoTime()));
+      // System.out.println(this.t18.size());
+    }
+  }
+  public void t33() {
+    for(int i = 0; i < 5; i++) {
+      this.t46.add(String.valueOf(System.nanoTime()));
+      // System.out.println(this.t46.size());
+    }
+  }
+  public void t11() {
+    for(int i = 0; i < 9; i++) {
+      this.t46.add(String.valueOf(System.nanoTime()));
+      // System.out.println(this.t46.size());
+    }
   }
   public void t16(H r) {
     r.t27();
