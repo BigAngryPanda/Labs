@@ -114,6 +114,9 @@ class D {
   */
   public byte[] getValueFromCache(String s) {
     try {
+      java.net.URL url = new java.net.URL(s);
+      url = null;
+
       if(!cache.containsKey(s)) {
         cache.put(s, new byte[1572864]);
       }
