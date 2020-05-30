@@ -11,7 +11,6 @@
 	<target name="compile">
 		<mkdir dir="${compiled.classes}"/>
         <mkdir dir="${compiled.classes.fixed}"/>
-        <mkdir dir="${compiled.classes.fixed1}"/>
 
     	<javac destdir="${compiled.classes}" includeantruntime="false">
             <src path="${src}"/>
@@ -28,14 +27,6 @@
                 <path refid="classpath.test"/>
             </classpath>
         </javac>
-
-        <javac destdir="${compiled.classes.fixed1}" includeantruntime="false">
-            <src path="${src.fixed1}"/>
-            <classpath>
-                <pathelement location="${compiled.classes.fixed1}"/>
-                <path refid="classpath.test"/>
-            </classpath>
-        </javac> 
 	</target>
 
     <target name="build" depends="compile">
@@ -49,21 +40,13 @@
             <manifest>
                 <attribute name="Main-Class" value="Lab4Fixed"/>
             </manifest>
-        </jar>
-
-        <jar destfile="${jar.fixed1}" basedir="${compiled.classes.fixed1}" compress="false" index="true">
-            <manifest>
-                <attribute name="Main-Class" value="Lab4Fixed1"/>
-            </manifest>
-        </jar>      
+        </jar>    
     </target>
 
     <target name="clean">
         <delete dir="${compiled.classes}"/>
         <delete dir="${compiled.classes.fixed}"/>
-        <delete dir="${compiled.classes.fixed1}"/>
         <delete file="${jar}"/>
         <delete file="${jar.fixed}"/>
-        <delete file="${jar.fixed1}"/>
     </target>
 </project>

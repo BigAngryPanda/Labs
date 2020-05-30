@@ -1,5 +1,5 @@
 // var. 11111114
-public class Lab4Fiexd {
+public class Lab4Fixed {
   public static void main(String[] args) {
     D a = new D();
     D b = new E();
@@ -51,7 +51,8 @@ class D {
   int[] x8 = {-3, 1, 0, -2, 3};
   int[] x49 = {-2, 0, 3, 0, 3};
   int[] x32 = {-2, 1, -2, -1};
-  static java.util.Map<java.net.URL,byte[]> cache = new java.util.HashMap<java.net.URL,byte[]>();
+  // static java.util.Map<java.net.URL,byte[]> cache = new java.util.HashMap<java.net.URL,byte[]>();
+  static java.util.Map<String,byte[]> cache = new java.util.HashMap<String,byte[]>();
   static int x46;
   static int x4;
   static int x38;
@@ -97,6 +98,7 @@ class D {
       // Ignore it
     }
   }
+  /*
   public byte[] getValueFromCache(String s) {
     try {
       java.net.URL url = new java.net.URL(s);
@@ -104,6 +106,18 @@ class D {
         cache.put(url, new byte[1572864]);
       }
       return cache.get(url);
+    } catch (Exception e) {
+      System.out.println("Error: invalid URL!");
+      return null;
+    }
+  }
+  */
+  public byte[] getValueFromCache(String s) {
+    try {
+      if(!cache.containsKey(s)) {
+        cache.put(s, new byte[1572864]);
+      }
+      return cache.get(s);
     } catch (Exception e) {
       System.out.println("Error: invalid URL!");
       return null;
@@ -142,6 +156,7 @@ class D {
             synchronized(helloWorldOutput) {
               helloWorldOutput.writeObject("метод x23 в классе D (#" + String.valueOf(i) + ")");
               //Thread.sleep(6);
+              //helloWorldOutput.flush();
               helloWorldOutput.reset();
             }
           } catch(Exception e) {
