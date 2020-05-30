@@ -1,38 +1,32 @@
-// var. 21654
+// var. 11111114
 public class Lab4 {
   public static void main(String[] args) {
-    H a = new H();
-    H b = new D();
-    D c = new D();
-    b.t49();
-    a.t10();
-    a.t27();
-    c.t37();
-    a.t12();
-    b.t45();
-    a.t35();
-    b.t13();
-    a.t8();
-    c.t41();
-    b.t3();
-    a.t19();
-    c.t44();
-    a.t9();
-    b.t17();
-    c.t28();
-    a.t16(a);
-    b.t16(b);
-    b.t16(c);
-    c.t6();
-    c.t24();
-    c.t22();
+    D a = new D();
+    D b = new E();
+    E c = new E();
+    a.x15();
+    b.x23();
+    b.x7();
+    c.x31();
+    c.x18();
+    a.x50();
+    c.x26();
+    b.x30();
+    b.x25();
+    b.x34();
+    b.x20(a);
+    c.x20(b);
+    b.x20(c);
+    c.x33();
+    c.x39();
+    c.x35();
     Thread t = new Thread(new Runnable() {
       public void run() {
         while(true) {
           try {
-             D d = new D();
-             d.t11();
-             Thread.sleep(8);
+             E d = new E();
+             d.x41();
+             Thread.sleep(9);
           } catch(Exception e) {
             // Do nothing
           }
@@ -42,73 +36,72 @@ public class Lab4 {
     t.start();
   }
 }
-class H {
-  int t26;
-  int t2;
-  int t40;
-  int t29;
-  int t50;
-  long t25;
-  long t34;
-  long t38;
-  java.io.ObjectOutputStream sampleOut;
-  java.io.ObjectOutputStream helloWorldWriter;
-  java.io.ObjectOutputStream fileOut;
-  int[] t31 = {3, -3, -3, 2};
-  int[] t5 = {1, 2, -3, 0};
-  int[] t14 = {1, 0, -3, -2};
-  static String stack = "";
-  static java.util.Map<java.net.URI,byte[]> cache = new java.util.HashMap<java.net.URI,byte[]>();
-  static int t42;
-  static int t39;
-  static int t7;
-  static int t32;
-  static int t47;
-  java.util.List<String> t21 = new java.util.ArrayList<String>();
-  java.util.List<String> t18 = new java.util.ArrayList<String>();
-  java.util.List<String> t46 = new java.util.ArrayList<String>();
-  public H() {
-    t26 = 3;
-    t2 = 8;
-    t40 = 2;
-    t29 = 8;
-    t50 = 1;
-    t25 = 2L;
-    t34 = 1L;
-    t38 = 4L;
+class D {
+  int x45;
+  int x22;
+  int x44;
+  int x10;
+  int x17;
+  long x19;
+  long x13;
+  long x21;
+  java.io.ObjectOutputStream stringsOutput;
+  java.io.ObjectOutputStream stringsWriter;
+  java.io.ObjectOutputStream helloWorldOutput;
+  int[] x8 = {-3, 1, 0, -2, 3};
+  int[] x49 = {-2, 0, 3, 0, 3};
+  int[] x32 = {-2, 1, -2, -1};
+  static java.util.Map<java.net.URL,byte[]> cache = new java.util.HashMap<java.net.URL,byte[]>();
+  static int x46;
+  static int x4;
+  static int x38;
+  static int x5;
+  static int x36;
+  java.util.List<String> x47 = new java.util.ArrayList<String>();
+  java.util.List<String> x1 = new java.util.ArrayList<String>();
+  java.util.List<String> x11 = new java.util.ArrayList<String>();
+  public D() {
+    x45 = 7;
+    x22 = 5;
+    x44 = 2;
+    x10 = 3;
+    x17 = 9;
+    x19 = 7L;
+    x13 = 3L;
+    x21 = 3L;
     try {
-        sampleOut = new java.io.ObjectOutputStream(new java.io.FileOutputStream("sampleOut.txt"));
-        helloWorldWriter = new java.io.ObjectOutputStream(new java.io.FileOutputStream("helloWorldWriter.txt"));
-        fileOut = new java.io.ObjectOutputStream(new java.io.FileOutputStream("fileOut.txt"));
+        stringsOutput = new java.io.ObjectOutputStream(new java.io.FileOutputStream("stringsOutput.txt"));
+        stringsWriter = new java.io.ObjectOutputStream(new java.io.FileOutputStream("stringsWriter.txt"));
+        helloWorldOutput = new java.io.ObjectOutputStream(new java.io.FileOutputStream("helloWorldOutput.txt"));
     } catch (java.lang.Exception e) {
       // Do nothing
     }
   }
   public void init() {
     try {
-      if (sampleOut == null) sampleOut = new java.io.ObjectOutputStream(new java.io.FileOutputStream("sampleOut.txt"));
-      System.out.println("Thread : " + Thread.currentThread() + ", sampleOut = " + sampleOut);
+      if (stringsOutput == null) stringsOutput = new java.io.ObjectOutputStream(new java.io.FileOutputStream("stringsOutput.txt"));
+      System.out.println("Thread : " + Thread.currentThread() + ", stringsOutput = " + stringsOutput);
     } catch(Exception e) {
       // Ignore it
     }
     try {
-      if (helloWorldWriter == null) helloWorldWriter = new java.io.ObjectOutputStream(new java.io.FileOutputStream("helloWorldWriter.txt"));
-      System.out.println("Thread : " + Thread.currentThread() + ", helloWorldWriter = " + helloWorldWriter);
+      if (stringsWriter == null) stringsWriter = new java.io.ObjectOutputStream(new java.io.FileOutputStream("stringsWriter.txt"));
+      System.out.println("Thread : " + Thread.currentThread() + ", stringsWriter = " + stringsWriter);
     } catch(Exception e) {
       // Ignore it
     }
     try {
-      if (fileOut == null) fileOut = new java.io.ObjectOutputStream(new java.io.FileOutputStream("fileOut.txt"));
-      System.out.println("Thread : " + Thread.currentThread() + ", fileOut = " + fileOut);
+      if (helloWorldOutput == null) helloWorldOutput = new java.io.ObjectOutputStream(new java.io.FileOutputStream("helloWorldOutput.txt"));
+      System.out.println("Thread : " + Thread.currentThread() + ", helloWorldOutput = " + helloWorldOutput);
     } catch(Exception e) {
       // Ignore it
     }
   }
   public byte[] getValueFromCache(String s) {
     try {
-      java.net.URI url = new java.net.URI(s);
+      java.net.URL url = new java.net.URL(s);
       if(!cache.containsKey(url)) {
-        cache.put(url, new byte[524288]);
+        cache.put(url, new byte[1572864]);
       }
       return cache.get(url);
     } catch (Exception e) {
@@ -116,7 +109,7 @@ class H {
       return null;
     }
   }
-  public void t49() {
+  public void x15() {
     Thread t = new Thread(new Runnable() {
       public void run() {
         init();
@@ -124,11 +117,11 @@ class H {
         while(true) {
           i++;
           try {
-            synchronized(sampleOut) {
-              sampleOut.writeObject("метод t49 в классе H (#" + String.valueOf(i) + ")");
+            synchronized(helloWorldOutput) {
+              helloWorldOutput.writeObject("метод x15 в классе D (#" + String.valueOf(i) + ")");
               Thread.sleep(6);
-              sampleOut.flush();
-              sampleOut.reset();
+              helloWorldOutput.flush();
+              helloWorldOutput.reset();
             }
           } catch(Exception e) {
             // Do nothing
@@ -138,7 +131,7 @@ class H {
     });
     t.start();
   }
-  public void t10() {
+  public void x23() {
     Thread t = new Thread(new Runnable() {
       public void run() {
         init();
@@ -146,10 +139,10 @@ class H {
         while(true) {
           i++;
           try {
-            synchronized(fileOut) {
-              fileOut.writeObject("метод t10 в классе H (#" + String.valueOf(i) + ")");
+            synchronized(helloWorldOutput) {
+              helloWorldOutput.writeObject("метод x23 в классе D (#" + String.valueOf(i) + ")");
               Thread.sleep(6);
-              fileOut.reset();
+              helloWorldOutput.reset();
             }
           } catch(Exception e) {
             // Do nothing
@@ -159,7 +152,7 @@ class H {
     });
     t.start();
   }
-  public void t27() {
+  public void x7() {
     Thread t = new Thread(new Runnable() {
       public void run() {
         init();
@@ -167,33 +160,11 @@ class H {
         while(true) {
           i++;
           try {
-            synchronized(fileOut) {
-              fileOut.writeObject("метод t27 в классе H (#" + String.valueOf(i) + ")");
-              Thread.sleep(6);
-              fileOut.flush();
-              fileOut.reset();
-            }
-          } catch(Exception e) {
-            // Do nothing
-          }
-        }
-      }
-    });
-    t.start();
-  }
-  public void t37() {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        init();
-        int i = 0;
-        while(true) {
-          i++;
-          try {
-            synchronized(sampleOut) {
-              sampleOut.writeObject("метод t37 в классе H (#" + String.valueOf(i) + ")");
+            synchronized(helloWorldOutput) {
+              helloWorldOutput.writeObject("метод x7 в классе D (#" + String.valueOf(i) + ")");
               Thread.sleep(5);
-              sampleOut.flush();
-              sampleOut.reset();
+              helloWorldOutput.flush();
+              helloWorldOutput.reset();
             }
           } catch(Exception e) {
             // Do nothing
@@ -203,7 +174,7 @@ class H {
     });
     t.start();
   }
-  public void t12() {
+  public void x31() {
     Thread t = new Thread(new Runnable() {
       public void run() {
         init();
@@ -211,10 +182,11 @@ class H {
         while(true) {
           i++;
           try {
-            synchronized(helloWorldWriter) {
-              helloWorldWriter.writeObject("метод t12 в классе H (#" + String.valueOf(i) + ")");
-              Thread.sleep(5);
-              helloWorldWriter.reset();
+            synchronized(stringsOutput) {
+              stringsOutput.writeObject("метод x31 в классе D (#" + String.valueOf(i) + ")");
+              Thread.sleep(6);
+              stringsOutput.flush();
+              stringsOutput.reset();
             }
           } catch(Exception e) {
             // Do nothing
@@ -224,7 +196,7 @@ class H {
     });
     t.start();
   }
-  public void t45() {
+  public void x18() {
     Thread t = new Thread(new Runnable() {
       public void run() {
         init();
@@ -232,10 +204,11 @@ class H {
         while(true) {
           i++;
           try {
-            synchronized(sampleOut) {
-              sampleOut.writeObject("метод t45 в классе H (#" + String.valueOf(i) + ")");
+            synchronized(stringsWriter) {
+              stringsWriter.writeObject("метод x18 в классе D (#" + String.valueOf(i) + ")");
               Thread.sleep(6);
-              sampleOut.reset();
+              stringsWriter.flush();
+              stringsWriter.reset();
             }
           } catch(Exception e) {
             // Do nothing
@@ -245,16 +218,19 @@ class H {
     });
     t.start();
   }
-  public void t44() {
+  public void x50() {
     Thread t = new Thread(new Runnable() {
       public void run() {
+        init();
         int i = 0;
         while(true) {
           i++;
           try {
-            synchronized(stack) {
-              stack = stack.substring(0, stack.length() - 1);
+            synchronized(helloWorldOutput) {
+              helloWorldOutput.writeObject("метод x50 в классе D (#" + String.valueOf(i) + ")");
               Thread.sleep(6);
+              helloWorldOutput.flush();
+              helloWorldOutput.reset();
             }
           } catch(Exception e) {
             // Do nothing
@@ -264,134 +240,37 @@ class H {
     });
     t.start();
   }
-  public void t9() {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        int i = 0;
-        while(true) {
-          i++;
-          try {
-            synchronized(stack) {
-              stack = stack.substring(0, stack.length() - 1);
-              Thread.sleep(6);
-            }
-          } catch(Exception e) {
-            // Do nothing
-          }
-        }
-      }
-    });
-    t.start();
+  public static void x26() {
+    System.out.println("метод x26 в классе D");
+    System.out.println(x46);
   }
-  public void t17() {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        int i = 0;
-        while(true) {
-          i++;
-          try {
-            synchronized(stack) {
-              stack = stack.substring(0, stack.length() - 1);
-              Thread.sleep(5);
-            }
-          } catch(Exception e) {
-            // Do nothing
-          }
-        }
-      }
-    });
-    t.start();
+  public static void x30() {
+    System.out.println("метод x30 в классе D");
+    System.out.println((x46 - 1));
   }
-  public void t28() {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        int i = 0;
-        while(true) {
-          i++;
-          try {
-            synchronized(stack) {
-              stack += "3";
-              Thread.sleep(6);
-            }
-          } catch(Exception e) {
-            // Do nothing
-          }
-        }
-      }
-    });
-    t.start();
+  public static void x25() {
+    System.out.println("метод x25 в классе D");
+    System.out.println(x4);
   }
-  public void t19() {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        int i = 0;
-        while(true) {
-          i++;
-          try {
-            synchronized(stack) {
-              stack = stack.substring(0, stack.length() - 1);
-              Thread.sleep(6);
-            }
-          } catch(Exception e) {
-            // Do nothing
-          }
-        }
-      }
-    });
-    t.start();
+  public static void x34() {
+    System.out.println("метод x34 в классе D");
+    System.out.println((x4 - 1));
   }
-  public void t3() {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        int i = 0;
-        while(true) {
-          i++;
-          try {
-            synchronized(stack) {
-              stack += "7";
-              Thread.sleep(6);
-            }
-          } catch(Exception e) {
-            // Do nothing
-          }
-        }
-      }
-    });
-    t.start();
+  public void x20(D r) {
+    r.x15();
   }
-  public static void t35() {
-    System.out.println("метод t35 в классе H");
-    System.out.println(t42);
-  }
-  public static void t13() {
-    System.out.println("метод t13 в классе H");
-    System.out.println((t42 - 2));
-  }
-  public static void t8() {
-    System.out.println("метод t8 в классе H");
-    System.out.println(t39);
-  }
-  public static void t41() {
-    System.out.println("метод t41 в классе H");
-    System.out.println((t39 - 4));
-  }
-  public void t16(H r) {
-    r.t49();
-  }
-  public void t16(D r) {
-    r.t10();
+  public void x20(E r) {
+    r.x23();
   }
 }
-class D extends H {
-  public D() {
-    t26 = 3;
-    t2 = 5;
-    t40 = 4;
-    t29 = 9;
-    t50 = 6;
-    t38 = 8L;
+class E extends D {
+  public E() {
+    x22 = 0;
+    x44 = 8;
+    x10 = 0;
+    x13 = 2L;
   }
-  public void t49() {
+  public void x31() {
     Thread t = new Thread(new Runnable() {
       public void run() {
         init();
@@ -399,32 +278,11 @@ class D extends H {
         while(true) {
           i++;
           try {
-            synchronized(sampleOut) {
-              sampleOut.writeObject("метод t49 в классе D (#" + String.valueOf(i) + ")");
-              Thread.sleep(5);
-              sampleOut.flush();
-              sampleOut.reset();
-            }
-          } catch(Exception e) {
-            // Do nothing
-          }
-        }
-      }
-    });
-    t.start();
-  }
-  public void t27() {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        init();
-        int i = 0;
-        while(true) {
-          i++;
-          try {
-            synchronized(sampleOut) {
-              sampleOut.writeObject("метод t27 в классе D (#" + String.valueOf(i) + ")");
+            synchronized(helloWorldOutput) {
+              helloWorldOutput.writeObject("метод x31 в классе E (#" + String.valueOf(i) + ")");
               Thread.sleep(7);
-              sampleOut.reset();
+              helloWorldOutput.flush();
+              helloWorldOutput.reset();
             }
           } catch(Exception e) {
             // Do nothing
@@ -434,18 +292,31 @@ class D extends H {
     });
     t.start();
   }
-  public void t12() {
+  public void x33() {
     Thread t = new Thread(new Runnable() {
       public void run() {
-        init();
-        int i = 0;
         while(true) {
-          i++;
           try {
-            synchronized(helloWorldWriter) {
-              helloWorldWriter.writeObject("метод t12 в классе D (#" + String.valueOf(i) + ")");
+            synchronized(cache) {
+              getValueFromCache("https://www.google.com");
+              Thread.sleep(14);
+            }
+          } catch(Exception e) {
+            // Do nothing
+          }
+        }
+      }
+    });
+    t.start();
+  }
+  public void x39() {
+    Thread t = new Thread(new Runnable() {
+      public void run() {
+        while(true) {
+          try {
+            synchronized(cache) {
+              getValueFromCache("https://www.google.com");
               Thread.sleep(6);
-              helloWorldWriter.reset();
             }
           } catch(Exception e) {
             // Do nothing
@@ -455,35 +326,14 @@ class D extends H {
     });
     t.start();
   }
-  public void t45() {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        init();
-        int i = 0;
-        while(true) {
-          i++;
-          try {
-            synchronized(fileOut) {
-              fileOut.writeObject("метод t45 в классе D (#" + String.valueOf(i) + ")");
-              Thread.sleep(6);
-              fileOut.reset();
-            }
-          } catch(Exception e) {
-            // Do nothing
-          }
-        }
-      }
-    });
-    t.start();
-  }
-  public void t6() {
+  public void x35() {
     Thread t = new Thread(new Runnable() {
       public void run() {
         while(true) {
           try {
             synchronized(cache) {
               getValueFromCache("https://www.google.com");
-              Thread.sleep(11);
+              Thread.sleep(5);
             }
           } catch(Exception e) {
             // Do nothing
@@ -493,84 +343,50 @@ class D extends H {
     });
     t.start();
   }
-  public void t24() {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        while(true) {
-          try {
-            synchronized(cache) {
-              getValueFromCache("https://www.google.com");
-              Thread.sleep(8);
-            }
-          } catch(Exception e) {
-            // Do nothing
-          }
-        }
-      }
-    });
-    t.start();
+  public static void x26() {
+    System.out.println("метод x26 в классе E");
+    System.out.println(--x46);
   }
-  public void t22() {
-    Thread t = new Thread(new Runnable() {
-      public void run() {
-        while(true) {
-          try {
-            synchronized(cache) {
-              getValueFromCache("https://www.google.com");
-              Thread.sleep(12);
-            }
-          } catch(Exception e) {
-            // Do nothing
-          }
-        }
-      }
-    });
-    t.start();
+  public static void x30() {
+    System.out.println("метод x30 в классе E");
+    System.out.println(x4);
   }
-  public static void t35() {
-    System.out.println("метод t35 в классе D");
-    System.out.println(++t42);
+  public static void x25() {
+    System.out.println("метод x25 в классе E");
+    System.out.println((x4 - 4));
   }
-  public static void t13() {
-    System.out.println("метод t13 в классе D");
-    System.out.println(t39);
+  public static void x34() {
+    System.out.println("метод x34 в классе E");
+    System.out.println(x4);
   }
-  public static void t8() {
-    System.out.println("метод t8 в классе D");
-    System.out.println((t39 - 3));
-  }
-  public static void t41() {
-    System.out.println("метод t41 в классе D");
-    System.out.println(t39);
-  }
-  public void t36() {
+  public void x14() {
     for(int i = 0; i < 9; i++) {
-      this.t21.add(String.valueOf(System.nanoTime()));
-      // System.out.println(this.t21.size());
+      this.x1.add(String.valueOf(System.nanoTime()));
+      // System.out.println(this.x1.size());
     }
   }
-  public void t23() {
-    for(int i = 0; i < 7; i++) {
-      this.t18.add(String.valueOf(System.nanoTime()));
-      // System.out.println(this.t18.size());
-    }
-  }
-  public void t33() {
-    for(int i = 0; i < 5; i++) {
-      this.t46.add(String.valueOf(System.nanoTime()));
-      // System.out.println(this.t46.size());
-    }
-  }
-  public void t11() {
+  public void x16() {
     for(int i = 0; i < 9; i++) {
-      this.t46.add(String.valueOf(System.nanoTime()));
-      // System.out.println(this.t46.size());
+      this.x11.add(String.valueOf(System.nanoTime()));
+      // System.out.println(this.x11.size());
     }
   }
-  public void t16(H r) {
-    r.t27();
+  public void x29() {
+    for(int i = 0; i < 8; i++) {
+      this.x47.add(String.valueOf(System.nanoTime()));
+      // System.out.println(this.x47.size());
+    }
   }
-  public void t16(D r) {
-    r.t37();
+  public void x41() {
+    for(int i = 0; i < 6; i++) {
+      this.x47.add(String.valueOf(System.nanoTime()));
+      // System.out.println(this.x47.size());
+    }
+  }
+  public void x20(D r) {
+    r.x7();
+  }
+  public void x20(E r) {
+    r.x31();
   }
 }
