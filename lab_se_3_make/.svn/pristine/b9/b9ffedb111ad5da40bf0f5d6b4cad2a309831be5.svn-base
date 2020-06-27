@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<project name="lab3" default="build" xmlns:ac="antlib:net.sf.antcontrib">
+	<property file="build.properties"/>
+
+	<path id="classpath.test">
+        <pathelement location="${junit.lib}" />
+        <pathelement location="${hamcrest-core}" />
+        <pathelement location="${ant.junit.lib}" />
+        <pathelement location="${ant.contrib}" />
+    </path>
+
+	<target name="compile">
+		<mkdir dir="${compiled.classes}"/>
+        <mkdir dir="${compiled.tests}"/>
+
+    	<javac destdir="${compiled.classes}" includeantruntime="false">
+            <src path="${src}"/>
+            <classpath>
+                <pathelement location="${compiled.classes}"/>
+                <path refid="classpath.test"/>
+            </classpath>
+        </javac>
+
+        <javac destdir="${compiled.tests}" includeantruntime="false">
+            <src path="${test}"/>
+            <classpath>
+                <pathelement location="${compiled.classes}"/>
+                <path refid="classpath.test"/>
+            </classpath>
+        </javac>
+	</target>
+
+    <target name="build" depends="compile">
+        <jar destfile="${jar}" basedir="${compiled.classes}" compress="false" index="true">
+            <manifest>
+                <attribute name="Main-Class" value="Programm"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="clean">
+        <delete dir="${compiled.classes}"/>
+        <delete dir="${compiled.tests}"/>
+        <delete file="${jar}"/>
+    </target>
+	
+    <target name="test" depends="build">
+        <junit haltonfailure="yes" printsummary="on" fork="true">
+            <formatter type="xml"/>
+            <classpath>
+                <path refid="classpath.test"/>
+                <pathelement location="${compiled.classes}"/>
+                <pathelement location="${compiled.tests}"/>
+            </classpath>
+            <batchtest todir="${report}">
+                <fileset dir="test" includes="*Test*.java"/>
+            </batchtest>
+        </junit>
+    </target>
+
+    <target name="doc">
+        <mkdir dir="${doc}"/>
+        <javadoc destdir="${doc}">
+            <fileset dir="${src}" includes="*.java"/>
+        </javadoc>
+
+        <checksum todir="${checksum}" algorithm="MD5" totalproperty="md5cs" forceoverwrite="yes">
+            <fileset dir="${src}"/>
+        </checksum>
+
+        <checksum todir="${checksum}" algorithm="SHA-1" totalproperty="sha1cs" forceoverwrite="yes">
+            <fileset dir="${src}"/>
+        </checksum>
+
+        <jar destfile="${jar}" update="true">
+        	<zipfileset src="${jar}"/>
+        	<manifest>
+                <attribute name="md5" value="${md5cs}"/>
+                <attribute name="sha1" value="${sha1cs}"/>
+            </manifest>
+		</jar>
+    </target>
+
+    <target name="diff">
+        <exec executable="svn" outputproperty="svn_diff_result">
+            <arg value="status"/>
+        </exec>
+
+        <ac:for param="name" list="${classnames}" delimiter=" ">
+            <sequential>
+                <condition property="found-diff">
+                    <contains string="${svn_diff_result}" substring="@{name}.java"/>
+                </condition>
+            </sequential>
+        </ac:for>
+
+        <antcall target="commit"/>
+    </target>
+
+    <target name="commit" if="${found-diff}">
+        <exec executable="svn">   
+            <arg line="add"/>
+            <arg value="*"/>
+            <arg value="--force"/>
+        </exec>
+
+        <exec executable="svn">   
+            <arg value="commit"/>
+            <arg value="-m 'ant commit'"/>
+        </exec>
+    </target>
+</project>
