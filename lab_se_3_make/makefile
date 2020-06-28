@@ -1,7 +1,7 @@
 # https://stackoverflow.com/questions/2235276/how-to-run-junit-test-cases-from-the-command-line
 # https://stackoverflow.com/questions/3931741/why-does-make-think-the-target-is-up-to-date
 # https://www.gnu.org/software/make/manual/html_node/Conditional-Functions.html#Conditional-Functions
-.PHONY: doc diff
+.PHONY: doc diff test
 
 jar = lab3.jar
 
@@ -30,7 +30,7 @@ compile:
 	javac -d $(class.tests) -cp $(class.production):$(lib)/* $(src.tests)/*.java
 
 test: build
-	java -cp .:$(class.production):$(class.tests):$(lib.junit):$(lib.hamcrest) org.junit.runner.JUnitCore ProgrammTest > $(test.report)/Report
+	java -cp .:$(class.production):$(class.tests):$(lib.junit):$(lib.hamcrest) org.junit.runner.JUnitCore ProgrammTest > report/$(test.report)
 
 doc:
 	javadoc $(src)/*.java -d $(docs)
@@ -50,6 +50,7 @@ clean:
 	rm -f $(class.tests)/*.class
 	rm -f $(docs)/*
 	rm -f $(jar)
+	rm -f report/$(test.report)
 
 diff:
 	./commit.sh $(classes)
