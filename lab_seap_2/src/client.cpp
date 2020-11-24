@@ -234,7 +234,7 @@ int main(int argc, char const *argv[])
 	// if key is even then it is time-limited programm, attempts-limited otherwise
 	size_t key = 1;
 
-	if (argc == 2 && argv[1] == "-t")
+	if (argc == 2 && std::string(argv[1]) == "-t")
 	{
 		key = 0;
 	}

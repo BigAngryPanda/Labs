@@ -136,31 +136,6 @@ size_t read_limit(const std::string& filename)
 	return std::stoll(line);
 }
 
-std::unordered_set<size_t> read_keys(const std::string& filename)
-{
-	std::unordered_set<size_t> result;
-
-	std::ifstream file;
-
-	try
-	{
-		file.open(filename);
-
-		std::string line;
-
-		while (std::getline(file, line))
-		{
-			result.insert(std::stoll(line));
-		}
-	}
-	catch(...)
-	{
-		throw std::runtime_error("Internal error: cannot read keys file");
-	}
-
-	return result;
-}
-
 void run(Socket& s)
 {
 	const std::string file_dir = "db/";
