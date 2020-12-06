@@ -10,16 +10,16 @@ void* get_stat()
 {
     while (1)
 	{
-        struct sysinfo stat;
+		struct sysinfo stat;
 
-        sysinfo(&stat);
+		sysinfo(&stat);
 
-        long long total_mem = stat.totalram + stat.totalswap;
-        total_mem *= stat.mem_unit;
+		long long total_mem = stat.totalram + stat.totalswap;
+		total_mem *= stat.mem_unit;
 
-        long long used_mem = stat.totalram - stat.freeram;
-        used_mem += stat.totalswap - stat.freeswap;
-        used_mem *= stat.mem_unit;
+		long long used_mem = stat.totalram - stat.freeram;
+		used_mem += stat.totalswap - stat.freeswap;
+		used_mem *= stat.mem_unit;
 
 		FILE* log = fopen("log", "a");
 
