@@ -8,7 +8,7 @@
 
 void* get_stat()
 {
-    while (1)
+	while (1)
 	{
 		struct sysinfo stat;
 
