@@ -64,9 +64,13 @@ main (int argc, char *argv[])
 		exit (1);
 	}
 	host = argv[1];
-
     
+    if (login()){
+        printf("%d\n", *factorial_1 (host, 5));
+    }
+    else{
+            printf("Failed to login\n");
+    }
 
-    printf("%d", *factorial_1 (host, 5));
 exit (0);
 }
