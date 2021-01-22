@@ -32,6 +32,27 @@ factorial_1(char *host, int arg)
     return result_1;
 }
 
+int login(){
+        char username[100];
+        char password[100];
+
+        printf("Username: ");
+        scanf("%s", &username);
+        if (!strcmp(username, "root")){
+                printf("Password: ");
+                scanf("%s", &password);
+                if (!strcmp(password, "toor")){
+                        printf("SUCCESS\n");
+                        return 1;
+                }
+            else {
+                printf("Incorrent password\n");
+                return 0;
+            }
+        }
+        printf("Incorrect username\n");
+        return 0;
+}
 
 int
 main (int argc, char *argv[])
@@ -43,6 +64,8 @@ main (int argc, char *argv[])
 		exit (1);
 	}
 	host = argv[1];
+
+    
 
     printf("%d", *factorial_1 (host, 5));
 exit (0);
